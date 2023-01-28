@@ -1,0 +1,22 @@
+{
+  "namespace": "com.techeule.examples.avro.schemas",
+  "type": "record",
+  "name": "Order",
+  "fields": [
+    {
+      "name": "orderId",
+      "type": "string",
+      "doc": "The ID of a given order"
+    },
+    {
+      "name": "customerId",
+      "type": "string",
+      "doc": "The customer-ID which placed the order"
+    },
+    {
+      "name": "orderDateEpochSecondsUTC",
+      "type": "long",
+      "doc": "Order date represented in number of seconds since epoch (00:00:00 UTC on 1 January 1970)"
+    }
+  ]
+}
