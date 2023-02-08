@@ -1,7 +1,7 @@
 {
   "namespace": "com.techeule.examples.avro.schemas",
   "type": "record",
-  "name": "Order",
+  "name": "OrderEvent",
   "fields": [
     {
       "name": "orderId",
@@ -11,6 +11,19 @@
     {
       "name": "customerId",
       "type": "string",
+      "doc": "The customer-ID which placed the order"
+    },
+    {
+      "name": "trigger",
+      "type": {
+        "name": "Cause",
+        "type": "enum",
+        "symbols": [
+          "CREATED",
+          "UPDATED",
+          "CANCELED"
+        ]
+      },
       "doc": "The customer-ID which placed the order"
     },
     {
