@@ -10,5 +10,5 @@ import com.techeule.examples.avro.kafka.entity.KafkaMessage;
 @Repository
 public interface KafkaMessageRepository extends JpaRepository<KafkaMessage, String> {
 
-    List<KafkaMessage> findAllByTargetTopic(final String targetTopic);
+  List<KafkaMessage> findAllByTargetTopic(final String targetTopic);
 }

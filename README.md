@@ -7,7 +7,6 @@ At [TechEule.com](https://techeule.com/) you can find more info about this repos
 
 ## Code
 
-
 The Avro-Schemas are located at:
 [`src/main/resources/avro-schemas/`](./src/main/resources/avro-schemas)
 
@@ -35,7 +34,6 @@ The Avro-Schemas are located at:
     ```
     # TODO
     ```
-
 
 ### In an IDE
 

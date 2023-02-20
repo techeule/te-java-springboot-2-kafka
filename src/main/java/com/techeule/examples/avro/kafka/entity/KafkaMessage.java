@@ -19,31 +19,31 @@ import lombok.Setter;
 @Setter
 @Builder
 public class KafkaMessage {
-    @Id
-    private String id;
-    private String targetTopic;
-    private byte[] messagePayload;
-    private String messageKey;
-    private LocalDateTime createdAt;
+  @Id
+  private String id;
+  private String targetTopic;
+  private byte[] messagePayload;
+  private String messageKey;
+  private LocalDateTime createdAt;
 
-    @Override
-    public boolean equals(final Object o) {
-        if (this == o) {
-            return true;
-        }
-        if (!(o instanceof final KafkaMessage that)) {
-            return false;
-        }
-        return Objects.equals(targetTopic, that.targetTopic) && Arrays.equals(messagePayload,
-                                                                              that.messagePayload) && Objects.equals(
-                messageKey,
-                that.messageKey);
+  @Override
+  public boolean equals(final Object o) {
+    if (this == o) {
+      return true;
     }
+    if (!(o instanceof final KafkaMessage that)) {
+      return false;
+    }
+    return Objects.equals(targetTopic, that.targetTopic) && Arrays.equals(messagePayload,
+                                                                          that.messagePayload) && Objects.equals(
+      messageKey,
+      that.messageKey);
+  }
 
-    @Override
-    public int hashCode() {
-        int result = Objects.hash(targetTopic, messageKey);
-        result = (31 * result) + Arrays.hashCode(messagePayload);
-        return result;
-    }
+  @Override
+  public int hashCode() {
+    int result = Objects.hash(targetTopic, messageKey);
+    result = (31 * result) + Arrays.hashCode(messagePayload);
+    return result;
+  }
 }
