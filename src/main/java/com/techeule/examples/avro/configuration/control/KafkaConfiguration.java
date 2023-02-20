@@ -1,6 +1,7 @@
 package com.techeule.examples.avro.configuration.control;
 
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
 import org.apache.kafka.clients.admin.NewTopic;
 import org.springframework.boot.context.properties.ConfigurationProperties;
@@ -21,6 +22,9 @@ public class KafkaConfiguration {
   @NotBlank
   String topicName = "order-events";
 
+  @NotNull
+  KafkaMessageProducer.Mode mode = KafkaMessageProducer.Mode.SAVE_BEFORE_SEND;
+
   @Bean
   KafkaMessageProducer<OrderEvent> orderEventKafkaMessageProducer(final KafkaTemplate<String, OrderEvent> orderEventKafkaTemplate,
                                                                   final KafkaMessageRepository kafkaMessageRepository) {
@@ -28,7 +32,7 @@ public class KafkaConfiguration {
                                       OrderEvent.class,
                                       kafkaMessageRepository,
                                       topicName,
-                                      KafkaMessageProducer.Mode.SAVE_ON_ERROR);
+                                      mode);
   }
 
   @Bean

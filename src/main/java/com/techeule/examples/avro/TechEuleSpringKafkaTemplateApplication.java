@@ -4,8 +4,10 @@ import static java.lang.System.Logger.Level.INFO;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.scheduling.annotation.EnableScheduling;
 
 @SpringBootApplication
+@EnableScheduling
 public class TechEuleSpringKafkaTemplateApplication {
 
   private static final System.Logger logger = System.getLogger(TechEuleSpringKafkaTemplateApplication.class.getName());

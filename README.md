@@ -20,27 +20,83 @@ The Avro-Schemas are located at:
 
 - JDK version 17 or newer
 - Maven 3.8 or newer
+- Docker
+- Docker Compose
 
-## How to run and build this project
+## How to set up the environment/infrastructure
 
-### In the Terminal
+Open the terminal
 
-1. execute the following command in the terminal
-    ```shell
-   # TODO    
-    ```
+```shell
+# navigate to environment/te-spring-kafka-docker
+cd environment/te-spring-kafka-docker
 
-2. Output ends with something like:
-    ```
-    # TODO
-    ```
+# start the docker compose services
+# the first time it will take several minutes to pull all needed docker images
+docker-compose up -d
+ ```
 
-### In an IDE
+After the environment is booted you have to run the database migration.
+This project support both database systems MySQL and Postgresql, but not at the same time.
 
-- Import/Open this project in the IDE
-- Let the IDE build the project using Maven
-- Let the IDE build the project using the build-in build process
-- Execute all tests of this project
+### Flyway: MySQL/MariaDB
+
+```shell
+mvn -Dflyway.configFiles=src/main/flyway/flyway-mysql.properties flyway:migrate
+```
+
+### Flyway: Postgresql
+
+```shell
+mvn -Dflyway.configFiles=src/main/flyway/flyway-postgresql.properties flyway:migrate
+```
+
+## How to build and run the applicaton
+
+### Maven build
+
+Here you have to decide which database system do you want to use.
+
+#### MySQL
+
+```shell
+mvn clean package --activate-profiles mysql,-postgresql
+```
+
+#### Postgresql
+
+```shell
+mvn clean package --activate-profiles -mysql,postgresql
+```
+
+
+### Application Start
+
+Here you have to decide which database system do you want to use.
+
+#### MySQL
+
+##### Using Maven
+```shell
+mvn clean spring-boot:run --activate-profiles mysql,-postgresql -Dspring-boot.run.profiles=mysql 
+```
+
+##### Plain java
+```shell
+java -Dspring.profiles.active="mysql" -jar target/techeule-java-maven-template.jar 
+```
+
+#### Postgresql
+
+##### Using Maven
+```shell
+mvn clean spring-boot:run --activate-profiles -mysql,postgresql -Dspring-boot.run.profiles=postgresql
+```
+
+##### Plain java
+```shell
+java -Dspring.profiles.active="postgresql" -jar target/techeule-java-maven-template.jar
+```
 
 ## Resources
 

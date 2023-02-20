@@ -49,7 +49,7 @@ public class KafkaMessageProducer<T extends GenericRecord> {
   private void saveThenSend(final String key,
                             final T message) {
     final var messageId = saveMessage(key, message);
-    keyValueKafkaTemplate.send(topicName, message).addCallback(
+    keyValueKafkaTemplate.send(topicName, key, message).addCallback(
       result -> kafkaMessageRepository.deleteById(messageId),
       throwable -> logger.log(ERROR, "Can't send message to topic {0}", topicName, throwable)
     );
@@ -57,7 +57,7 @@ public class KafkaMessageProducer<T extends GenericRecord> {
 
   private void sendAndSaveOnError(final String key,
                                   final T message) {
-    keyValueKafkaTemplate.send(topicName, message)
+    keyValueKafkaTemplate.send(topicName, key, message)
                          .addCallback(
                            result -> logger.log(DEBUG, "Successfully send message"),
                            throwable -> saveMessage(key, message)
