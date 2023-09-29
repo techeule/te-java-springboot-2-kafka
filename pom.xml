@@ -39,7 +39,7 @@
     <maven.compiler.source>${java.version}</maven.compiler.source>
     <maven.compiler.target>${java.version}</maven.compiler.target>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <avro.version>1.11.1</avro.version>
+    <avro.version>1.11.3</avro.version>
     <junit-jupiter.version>5.9.1</junit-jupiter.version>
     <assertj-core.version>3.23.1</assertj-core.version>
     <spring-boot.version>2.7.8</spring-boot.version>
